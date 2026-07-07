@@ -2,16 +2,16 @@
 # Lines starting with # are ignored. Add a new project by adding a line here — nothing else.
 
 # CargoIQ
-# https://cargoiq-backend.onrender.com/ping
+ https://cargoiq-backend.onrender.com/ping
 
 # GigNurse
-# https://gignurse-backend.onrender.com/ping
+https://gignurse-backend.onrender.com/ping
 
 # iGosa
-# https://igosa-backend.onrender.com/ping
+ https://igosa-backend.onrender.com/ping
 
 # RSL ASYCUDA AI Engine
-# https://rsl-asycuda.onrender.com/ping
+ https://rsl-asycuda.onrender.com/ping
 
 # SENAKANGOELI Intelligence Layer
-# https://senakangoeli.onrender.com/ping
+ https://senakangoeli.onrender.com/ping
