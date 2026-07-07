@@ -1,0 +1,55 @@
+name: Keep Alive
+
+on:
+  schedule:
+    # Every 10 minutes
+    - cron: '*/10 * * * *'
+  workflow_dispatch: {}
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Ping all registered URLs
+        env:
+          NOTIFY_WEBHOOK: ${{ secrets.NOTIFY_WEBHOOK }} # optional: Slack/Discord webhook, leave unset to disable
+        run: |
+          set +e
+          FAILED=0
+          TOTAL=0
+
+          while IFS= read -r url || [ -n "$url" ]; do
+            # skip blank lines and comments
+            [ -z "$url" ] && continue
+            case "$url" in \#*) continue ;; esac
+
+            TOTAL=$((TOTAL+1))
+            TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+            START=$(date +%s%3N)
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" --max-time 15 "$url")
+            END=$(date +%s%3N)
+            LATENCY=$((END-START))
+
+            if [ "$STATUS" -ge 200 ] && [ "$STATUS" -lt 400 ]; then
+              echo "[$TIMESTAMP] OK   $url -> $STATUS (${LATENCY}ms)"
+            else
+              echo "[$TIMESTAMP] FAIL $url -> $STATUS (${LATENCY}ms)"
+              FAILED=$((FAILED+1))
+            fi
+          done < urls.txt
+
+          echo "---"
+          echo "Pinged: $TOTAL  Failed: $FAILED"
+
+          if [ "$FAILED" -gt 0 ] && [ -n "$NOTIFY_WEBHOOK" ]; then
+            curl -s -X POST -H "Content-Type: application/json" \
+              -d "{\"text\":\"⚠️ Render keep-alive: $FAILED/$TOTAL endpoints failed at $(date -u +%Y-%m-%dT%H:%M:%SZ)\"}" \
+              "$NOTIFY_WEBHOOK" > /dev/null
+          fi
+
+          # Never fail the job on individual ping failures — this workflow's
+          # only purpose is to keep pinging on schedule, not to gate CI.
+          exit 0
