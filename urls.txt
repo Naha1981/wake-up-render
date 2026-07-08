@@ -3,6 +3,7 @@
 
 # CargoIQ
  https://cargoiq-backend.onrender.com/ping
+https://cargoiq-platform.onrender.com/ping
 
 # GigNurse
 https://gignurse-backend.onrender.com/ping
