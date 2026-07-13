@@ -1,19 +1,22 @@
-# Render Keep-Alive Hub — one URL per line, /ping or /health endpoint only.
-# Lines starting with # are ignored. Add a new project by adding a line here — nothing else.
+# Render Keep-Alive Hub — NahaLabs projects
+# One URL per line. Lines starting with # are ignored.
+# Uses /health endpoints which actually exist and return JSON.
+# wake-up-render pings every 10 minutes — keeps Render free tier awake.
 
-# CargoIQ
-https://cargoiq-backend.onrender.com/ping
-https://cargoiq-platform.onrender.com/ping
-https://cargoiq-platform-my-evolution-api.onrender.com/ping
+# CargoIQ — backend API (FastAPI, /health returns JSON status)
+https://cargoiq-platform.onrender.com/health
+
+# CargoIQ — Evolution API (WhatsApp, root returns 200 when alive)
+https://cargoiq-platform-my-evolution-api.onrender.com/
 
 # GigNurse
-https://gignurse-backend.onrender.com/ping
+https://gignurse-backend.onrender.com/health
 
 # iGosa
-https://igosa-backend.onrender.com/ping
+https://igosa-backend.onrender.com/health
 
 # RSL ASYCUDA AI Engine
-https://rsl-asycuda.onrender.com/ping
+https://rsl-asycuda.onrender.com/health
 
 # SENAKANGOELI Intelligence Layer
-https://senakangoeli.onrender.com/ping
+https://senakangoeli.onrender.com/health
