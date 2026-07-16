@@ -9,8 +9,14 @@ https://cargoiq-platform.onrender.com/health
 # CargoIQ — Evolution API (WhatsApp, root returns 200 when alive)
 https://cargoiq-platform-my-evolution-api.onrender.com/
 
+# CargoIQ — Claude Evolution API (WhatsApp, root returns 200 when alive)
+https://cargoiq-claude-my-evolution-api.onrender.com/
+
 # Chat2Cart — Evolution API (WhatsApp, root returns 200 when alive)
 https://chat2cart-my-evolution-api.onrender.com/
+
+# Flavourly — Claude Evolution API (WhatsApp, root returns 200 when alive)
+https://flavourly-os-in-claude-my-evolution-api.onrender.com/
 
 # GigNurse
 https://gignurse-backend.onrender.com/health
